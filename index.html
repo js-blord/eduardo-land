@@ -14,18 +14,14 @@
 function getValue() {
 const UIDattempt = document.getElementById("UID").value;
 const PWattempt = document.getElementById("UID").value;
+    return UIDattempt
+    return PWattempt
 }
 function loginCheck(UIDattempt,PWattempt) {
  if UIDattempt != correctUID || PWattempt != correctPW
-    <div class="alert">
-     <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
-    Wrong Login
-    </div>
+    alert("incorrect")
     else
-    <div class="alert">
-     <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
-    get naked
-    </div>
+    alert("correct")
 }
 </Script>
     
