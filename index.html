@@ -14,11 +14,12 @@
 
 function loginCheck(UIDattempt,PWattempt) {
     const UIDattempt = document.getElementById("UID").value;
-    const PWattempt = document.getElementById("UID").value;
- if UIDattempt != correctUID || PWattempt != correctPW
+    const PWattempt = document.getElementById("PW").value;
+ if (UIDattempt != correctUID || PWattempt != correctPW) { 
     alert("incorrect")
-    else
+ } else{
     alert("correct")
+    }    
 }
 </Script>
     
