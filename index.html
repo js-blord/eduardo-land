@@ -8,39 +8,35 @@
     <title>Document</title>
 </head>
 
-<Script>
+<script>
     let correctUID = "XLTL3902SEADMIN"
     let correctPW = "LARVAEGROWSINTHEMINDOFTHEANGEL"
 
-function loginCheck(UIDattempt,PWattempt) {
-    const UIDattempt = document.getElementById("UID").value;
-    const PWattempt = document.getElementById("PW").value;
- if (UIDattempt != correctUID || PWattempt != correctPW) { 
-    alert("incorrect")
- } else{
-    alert("correct")
-    }    
-}
-</Script>
+    function loginCheck() {
+        const UIDattempt = document.getElementById("UID").value;
+        const PWattempt = document.getElementById("PW").value;
+        
+        if (UIDattempt != correctUID || PWattempt != correctPW) { 
+            alert("incorrect")
+        } else{
+            alert("correct")
+        }    
+    }
+</script>
     
 <body>
 
 <form action="/login" method="post">
+    <div class="container">
+        <label for="UID"><b>Username</b></label>
+        <input type="text" id="UID" placeholder="Enter Username" name="uname" required>
 
-<div class="container">
-<label for="UID"><b>Username</b></label>
-<input type="text" placeholder="Enter Username" name="uname" required>
+        <label for="PW"><b>Password</b></label>
+        <input type="password" id="PW" placeholder="Enter Password" name="psw" required>
 
-<label for="PW"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" required>
-
-<button type="button" onclick="loginCheck(UIDattempt,PWattempt)">Login</button>
-
+        <button type="button" onclick="loginCheck()">Login</button>
+    </div>
 </form>
-
-
-    
-</body>
 
 </body>
 </html>
