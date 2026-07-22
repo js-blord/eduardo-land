@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 
+// Parse incoming request bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.post('/login', (req, res) => {
     const { uname, psw } = req.body;
     
