@@ -13,3 +13,13 @@ app.post('/login', (req, res) => {
         res.status(401).send('Invalid credentials');
     }
 });
+
+app.get('/login', (req, res) => {
+    res.send(`
+        <form method="POST" action="/login">
+            <input type="text" name="uname" placeholder="Username" required>
+            <input type="password" name="psw" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    `);
+});
