@@ -75,27 +75,6 @@ const FLICKER_CONFIG = {
     'bottom-right': { offset: 48, duration: 8000 }
 };
 
-/* ========================================
-   FISHEYE EFFECT CONFIGURATION
-   
-   Apply a fisheye lens distortion that increases from top to bottom.
-   Creates a curved, lens-like visual effect.
-   
-   Configuration:
-   - Top sections (0-50%): minimal distortion
-   - Middle sections (50%): moderate distortion
-   - Bottom sections (50-100%): maximum distortion
-   ======================================== */
-
-const FISHEYE_CONFIG = {
-    'top-left': { strength: 0.1, curvature: 0.05 },
-    'top-right': { strength: 0.1, curvature: 0.05 },
-    'middle-left': { strength: 0.5, curvature: 0.25 },
-    'middle-right': { strength: 0.5, curvature: 0.25 },
-    'bottom-left': { strength: 1.0, curvature: 0.6 },
-    'bottom-right': { strength: 1.0, curvature: 0.6 }
-};
-
 // Helper function to convert morse code to CSS animation keyframes
 function morseToKeyframes(morseCode, sectionName) {
     // This would be sent to client-side JavaScript to dynamically generate keyframes
@@ -103,8 +82,7 @@ function morseToKeyframes(morseCode, sectionName) {
     return {
         section: sectionName,
         morse: morseCode,
-        config: FLICKER_CONFIG[sectionName],
-        fisheye: FISHEYE_CONFIG[sectionName]
+        config: FLICKER_CONFIG[sectionName]
     };
 }
 
@@ -124,11 +102,6 @@ app.get('/api/morse-sequences', (req, res) => {
 app.get('/api/flicker-config', (req, res) => {
     // Endpoint to fetch flicker configuration
     res.json(FLICKER_CONFIG);
-});
-
-app.get('/api/fisheye-config', (req, res) => {
-    // Endpoint to fetch fisheye effect configuration
-    res.json(FISHEYE_CONFIG);
 });
 
 app.post('/login', (req, res) => {
