@@ -104,7 +104,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
-    width: 100%;
+    width: 300%;
     padding: 10px;
     margin-bottom: 15px;
     background-color: #000;
@@ -128,7 +128,7 @@ input[type="password"]:focus {
 }
 
 button {
-    width: 60%;
+    width: 20%;
     padding: 12px;
     background-color: #000;
     color: #00ff00;
