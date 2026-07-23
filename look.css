@@ -6,14 +6,13 @@
 }
 
 html {
-    perspective: 1500px;
     background-color: #000;
     height: 100vh;
     overflow: hidden;
 }
 
 body {
-    background-color: transparent;
+    background-color: #000;
     font-family: 'Courier New', monospace;
     color: #00ff00;
     height: 100vh;
@@ -21,81 +20,78 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    padding: 40px;
     position: relative;
-    padding: 20px;
 }
 
-/* Top Half Fisheye Bezel (Tilts away 5deg) */
-html::before {
+/* ========================================
+   TOP SCREEN BEND (+5deg tilt)
+   ======================================== */
+body::before {
     content: '';
     position: fixed;
-    top: 0;
+    top: 0; 
     left: 0;
-    width: 100%;
+    width: 100%; 
     height: 50%;
     transform: perspective(1200px) rotateX(5deg);
-    transform-origin: top center;
-    border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+    transform-origin: bottom center;
+    border-radius: 50% 50% 0 0 / 40% 40% 0 0;
     box-shadow: 
-        inset 0 50px 80px rgba(0, 0, 0, 0.95),
-        inset 0 10px 30px rgba(0, 255, 0, 0.1);
+        0 0 0 100vw #000, /* MASK: Blacks out the top corners to create the curve */
+        inset 0 30px 80px rgba(0, 0, 0, 0.9), /* Internal darkness */
+        inset 0 10px 30px rgba(0, 255, 0, 0.15); /* Green fisheye edge glow */
+    pointer-events: none;
+    z-index: 9996;
+}
+
+/* ========================================
+   BOTTOM SCREEN BEND (-5deg tilt)
+   ======================================== */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    height: 50%;
+    transform: perspective(1200px) rotateX(-5deg);
+    transform-origin: top center;
+    border-radius: 0 0 50% 50% / 0 0 40% 40%;
+    box-shadow: 
+        0 0 0 100vw #000, /* MASK: Blacks out the bottom corners to create the curve */
+        inset 0 -30px 80px rgba(0, 0, 0, 0.9), /* Internal darkness */
+        inset 0 -10px 30px rgba(0, 255, 0, 0.15); /* Green fisheye edge glow */
     pointer-events: none;
     z-index: 9997;
 }
 
-/* Bottom Half Fisheye Bezel (Tilts away -5deg) */
+/* ========================================
+   VIGNETTE AND SCANLINES
+   ======================================== */
 html::after {
     content: '';
     position: fixed;
-    bottom: 0;
+    top: 0; 
     left: 0;
-    width: 100%;
-    height: 50%;
-    transform: perspective(1200px) rotateX(-5deg);
-    transform-origin: bottom center;
-    border-radius: 0 0 50% 50% / 0 0 20% 20%;
-    box-shadow: 
-        inset 0 -50px 80px rgba(0, 0, 0, 0.95),
-        inset 0 -10px 30px rgba(0, 255, 0, 0.1);
-    pointer-events: none;
-    z-index: 9998;
-}
-
-/* Full-screen Center Vignette */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    width: 100%; 
     height: 100%;
-    background: radial-gradient(
-        ellipse at center,
-        transparent 0%,
-        rgba(0, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.8) 100%
-    );
+    background: 
+        radial-gradient(
+            ellipse at center,
+            transparent 30%,
+            rgba(0, 0, 0, 0.5) 80%,
+            rgba(0, 0, 0, 0.9) 100%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 255, 0, 0.03),
+            rgba(0, 255, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 2px
+        );
     pointer-events: none;
     z-index: 9999;
-}
-
-/* CRT scanline effect */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 255, 0, 0.03),
-        rgba(0, 255, 0, 0.03) 1px,
-        transparent 1px,
-        transparent 2px
-    );
-    pointer-events: none;
-    z-index: 10000;
 }
 
 
