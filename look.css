@@ -71,51 +71,56 @@ body::after {
 
 /* ========================================
    CONFIGURABLE FLICKER SEQUENCE ANIMATIONS
+   BRIGHT AND VISIBLE VERSION
    ======================================== */
 
 /* Master cycle: 4-second loop for coordinated flickers */
 @keyframes flicker-cycle-slow {
     0%   { opacity: 1; }
     8%   { opacity: 1; }
-    10%  { opacity: 0.7; }
+    10%  { opacity: 0.1; }
     12%  { opacity: 1; }
     100% { opacity: 1; }
 }
 
-/* Top section flicker - starts at 0% */
+/* Top section flicker - starts at 0% - BRIGHT VERSION */
 @keyframes flicker-top {
-    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-    8%   { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-    10%  { opacity: 0.5; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
-    12%  { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    8%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    10%  { opacity: 0.15; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    11%  { opacity: 1; text-shadow: 0 0 30px #00ff00, 0 0 50px #00ff00, 0 0 70px #00ff00; }
+    12%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    100% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
 }
 
-/* Middle section flicker - starts at 25% (1 second delayed) */
+/* Middle section flicker - starts at 25% (1 second delayed) - BRIGHT VERSION */
 @keyframes flicker-middle {
-    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    25%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    33%  { opacity: 0.6; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
-    35%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
+    25%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
+    33%  { opacity: 0.2; text-shadow: 0 0 5px #00ff00; }
+    34%  { opacity: 1; text-shadow: 0 0 25px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00; }
+    35%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
+    100% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
 }
 
-/* Bottom section flicker - starts at 50% (2 seconds delayed) */
+/* Bottom section flicker - starts at 50% (2 seconds delayed) - BRIGHT VERSION */
 @keyframes flicker-bottom {
-    0%   { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
-    50%  { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
-    58%  { opacity: 0.55; box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); }
-    60%  { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
-    100% { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+    0%   { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
+    50%  { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
+    58%  { opacity: 0.1; box-shadow: 0 0 5px rgba(0, 255, 0, 0.1), inset 0 0 5px rgba(0, 255, 0, 0.1); text-shadow: 0 0 3px #00ff00; }
+    59%  { opacity: 1; box-shadow: 0 0 40px rgba(0, 255, 0, 1), 0 0 60px rgba(0, 255, 0, 0.8), inset 0 0 20px rgba(0, 255, 0, 0.4); text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+    60%  { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
+    100% { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
 }
 
-/* Input/Interactive section flicker - starts at 75% (3 seconds delayed) */
+/* Input/Interactive section flicker - starts at 75% (3 seconds delayed) - BRIGHT VERSION */
 @keyframes flicker-input {
-    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    75%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    83%  { opacity: 0.65; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
-    85%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
+    75%  { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
+    83%  { opacity: 0.12; text-shadow: 0 0 3px #00ff00; box-shadow: 0 0 3px rgba(0, 255, 0, 0.1); }
+    84%  { opacity: 1; text-shadow: 0 0 20px #00ff00, 0 0 35px #00ff00, 0 0 50px #00ff00; box-shadow: 0 0 30px rgba(0, 255, 0, 0.9), 0 0 50px rgba(0, 255, 0, 0.7), inset 0 0 15px rgba(0, 255, 0, 0.3); }
+    85%  { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
+    100% { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
 }
 
 /* Enhanced CRT glow effect with more brightness */
@@ -199,6 +204,7 @@ input[type="password"] {
     font-size: 14px;
     transition: all 0.2s;
     animation: flicker-input 4s infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
 input[type="text"]::placeholder,
@@ -211,8 +217,8 @@ input[type="text"]:focus,
 input[type="password"]:focus {
     outline: none;
     border-color: #00ff00;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), inset 0 0 10px rgba(0, 255, 0, 0.2), 0 0 5px rgba(0, 255, 0, 0.6);
-    text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 1), inset 0 0 15px rgba(0, 255, 0, 0.3), 0 0 15px rgba(0, 255, 0, 0.8);
+    text-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00;
 }
 
 button {
@@ -230,17 +236,18 @@ button {
     transition: all 0.2s;
     margin-top: 10px;
     animation: flicker-input 4s infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
 button:hover {
     background-color: #00ff00;
     color: #000;
-    box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 15px rgba(0, 255, 0, 0.8);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 255, 0, 0.9);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 button:active {
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), inset 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 1), inset 0 0 15px rgba(0, 255, 0, 0.6);
 }
 
 a {
@@ -258,13 +265,14 @@ a {
     transition: all 0.2s;
     cursor: pointer;
     animation: flicker-bottom 4s infinite;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 a:hover {
     background-color: #00ff00;
     color: #000;
-    box-shadow: 0 0 25px rgba(0, 255, 0, 1), 0 0 15px rgba(0, 255, 0, 0.8);
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 255, 0, 0.9);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 .prompts {
@@ -273,6 +281,7 @@ a:hover {
     font-family: 'Courier New', monospace;
     font-size: 12px;
     animation: flicker-bottom 4s infinite;
+    text-shadow: 0 0 10px #00ff00;
 }
 
 /* ========================================
