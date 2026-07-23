@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
         req.session.authenticated = true;
         res.redirect('/dashboard');
     } else {
-        res.status(401).send('Invalid credentials');
+        res.redirect('/eduardo');
     }
 });
 
