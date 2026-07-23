@@ -18,7 +18,7 @@ body {
     padding: 20px;
 }
 
-/* Fisheye/curved monitor distortion effect - extends to bottom half */
+/* Fisheye/curved monitor distortion effect */
 html {
     perspective: 1500px;
 }
@@ -32,7 +32,7 @@ body {
         inset 0 0 30px rgba(0, 255, 0, 0.1);
 }
 
-/* Fisheye vignette overlay - full screen coverage with enhanced bottom distortion */
+/* Fisheye vignette overlay */
 body::before {
     content: '';
     position: fixed;
@@ -48,32 +48,10 @@ body::before {
     );
     pointer-events: none;
     z-index: 9997;
-    /* Apply additional fisheye distortion to bottom half */
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-/* Additional fisheye effect overlay for bottom half */
-body::after {
-    content: '';
-    position: fixed;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: radial-gradient(
-        ellipse at 50% -50%,
-        transparent 0%,
-        rgba(0, 0, 0, 0.1) 30%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
-    pointer-events: none;
-    z-index: 9998;
-    /* Enhanced fisheye curvature for bottom portion */
-    border-radius: 100% 100% 0 0 / 50% 50% 0 0;
 }
 
 /* CRT scanline effect */
-::before {
+body::after {
     content: '';
     position: fixed;
     top: 0;
@@ -91,6 +69,25 @@ body::after {
     z-index: 9999;
 }
 
+/* Additional fisheye distortion for bottom half */
+html::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: radial-gradient(
+        ellipse at 50% -50%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 30%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 100% 100% 0 0 / 50% 50% 0 0;
+}
+
 /* ========================================
    FLICKER OVERLAY SECTIONS FOR BLANK SCREEN AREAS
    LOW OPACITY FILLED VERSION
@@ -104,7 +101,7 @@ body::after {
     position: fixed;
     pointer-events: none;
     z-index: 8000;
-    background: rgba(0, 255, 0, 0.08);
+    background: rgba(0, 255, 0, 0.02);
     border: none;
 }
 
@@ -118,12 +115,12 @@ body::after {
 }
 
 @keyframes flicker-top-left-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    8%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    10%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    11%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    12%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    8%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    10%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    11%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    12%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Top-right flicker section */
@@ -136,12 +133,12 @@ body::after {
 }
 
 @keyframes flicker-top-right-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    25%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    33%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    34%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    35%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    25%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    33%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    34%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    35%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Middle-left flicker section */
@@ -154,12 +151,12 @@ body::after {
 }
 
 @keyframes flicker-middle-left-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    58%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    59%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    60%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    58%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    59%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    60%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Middle-right flicker section */
@@ -172,12 +169,12 @@ body::after {
 }
 
 @keyframes flicker-middle-right-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    75%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    83%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    84%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    85%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    75%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    83%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    84%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    85%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Bottom-left flicker section */
@@ -190,12 +187,12 @@ body::after {
 }
 
 @keyframes flicker-bottom-left-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    10%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    18%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    19%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    20%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    10%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    18%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    19%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    20%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Bottom-right flicker section */
@@ -208,12 +205,12 @@ body::after {
 }
 
 @keyframes flicker-bottom-right-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    40%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    48%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
-    49%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
-    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    40%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    48%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    49%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* ========================================
