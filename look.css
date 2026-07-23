@@ -30,7 +30,6 @@ body {
     box-shadow: 
         inset 0 0 80px rgba(0, 0, 0, 0.8),
         inset 0 0 30px rgba(0, 255, 0, 0.1);
-    animation: screen-flicker 0.15s infinite;
 }
 
 /* Fisheye vignette overlay */
@@ -49,7 +48,6 @@ body::before {
     );
     pointer-events: none;
     z-index: 9997;
-    animation: glitch-flicker 0.25s infinite;
 }
 
 /* CRT scanline effect */
@@ -71,60 +69,53 @@ body::after {
     z-index: 9999;
 }
 
-/* Screen flicker animation */
-@keyframes screen-flicker {
-    0%, 100% {
-        opacity: 0.98;
-        background-color: #000;
-    }
-    10% {
-        opacity: 1;
-        background-color: #001a00;
-    }
-    20% {
-        opacity: 0.97;
-        background-color: #000;
-    }
-    50% {
-        opacity: 0.99;
-        background-color: #000;
-    }
-    75% {
-        opacity: 1;
-        background-color: #001a00;
-    }
+/* ========================================
+   CONFIGURABLE FLICKER SEQUENCE ANIMATIONS
+   ======================================== */
+
+/* Master cycle: 4-second loop for coordinated flickers */
+@keyframes flicker-cycle-slow {
+    0%   { opacity: 1; }
+    8%   { opacity: 1; }
+    10%  { opacity: 0.7; }
+    12%  { opacity: 1; }
+    100% { opacity: 1; }
 }
 
-/* Glitch flicker animation */
-@keyframes glitch-flicker {
-    0%, 100% {
-        opacity: 0.8;
-    }
-    20% {
-        opacity: 0.85;
-    }
-    40% {
-        opacity: 0.8;
-    }
-    60% {
-        opacity: 0.9;
-    }
-    80% {
-        opacity: 0.82;
-    }
+/* Top section flicker - starts at 0% */
+@keyframes flicker-top {
+    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    8%   { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    10%  { opacity: 0.5; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
+    12%  { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
+    100% { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
 }
 
-/* CRT flicker effect */
-@keyframes flicker {
-    0% {
-        opacity: 0.95;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.95;
-    }
+/* Middle section flicker - starts at 25% (1 second delayed) */
+@keyframes flicker-middle {
+    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    25%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    33%  { opacity: 0.6; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
+    35%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+}
+
+/* Bottom section flicker - starts at 50% (2 seconds delayed) */
+@keyframes flicker-bottom {
+    0%   { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+    50%  { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+    58%  { opacity: 0.55; box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); }
+    60%  { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+    100% { opacity: 1; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+}
+
+/* Input/Interactive section flicker - starts at 75% (3 seconds delayed) */
+@keyframes flicker-input {
+    0%   { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    75%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    83%  { opacity: 0.65; text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
+    85%  { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
 }
 
 /* Enhanced CRT glow effect with more brightness */
@@ -162,6 +153,10 @@ body::after {
     }
 }
 
+/* ========================================
+   SECTION-SPECIFIC STYLING
+   ======================================== */
+
 h1 {
     text-align: left;
     color: #00ff00;
@@ -169,7 +164,7 @@ h1 {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    animation: text-glitch 0.4s infinite;
+    animation: flicker-top 4s infinite;
     font-weight: bold;
 }
 
@@ -178,8 +173,7 @@ p {
     color: #00ff00;
     margin-bottom: 20px;
     font-size: 14px;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
-    animation: flicker 0.15s infinite;
+    animation: flicker-middle 4s infinite;
 }
 
 label {
@@ -190,7 +184,7 @@ label {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    animation: flicker-middle 4s infinite;
 }
 
 input[type="text"],
@@ -204,9 +198,7 @@ input[type="password"] {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     transition: all 0.2s;
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
-    animation: flicker 0.15s infinite;
+    animation: flicker-input 4s infinite;
 }
 
 input[type="text"]::placeholder,
@@ -237,9 +229,7 @@ button {
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 10px;
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-    animation: flicker 0.15s infinite;
+    animation: flicker-input 4s infinite;
 }
 
 button:hover {
@@ -267,9 +257,7 @@ a {
     letter-spacing: 1px;
     transition: all 0.2s;
     cursor: pointer;
-    text-shadow: 0 0 5px #00ff00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-    animation: flicker 0.15s infinite;
+    animation: flicker-bottom 4s infinite;
 }
 
 a:hover {
@@ -284,5 +272,30 @@ a:hover {
     color: #00ff00;
     font-family: 'Courier New', monospace;
     font-size: 12px;
-    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+    animation: flicker-bottom 4s infinite;
+}
+
+/* ========================================
+   CUSTOM FLICKER MAPPING
+   Add these classes to HTML elements to use custom sequences
+   
+   Usage: <div class="flicker-custom-1">Content</div>
+   
+   Then define the animation timing in your HTML or extend here
+   ======================================== */
+
+.flicker-custom-1 {
+    animation: flicker-top 4s infinite;
+}
+
+.flicker-custom-2 {
+    animation: flicker-middle 4s infinite;
+}
+
+.flicker-custom-3 {
+    animation: flicker-bottom 4s infinite;
+}
+
+.flicker-custom-4 {
+    animation: flicker-input 4s infinite;
 }
