@@ -5,8 +5,15 @@
     box-sizing: border-box;
 }
 
-body {
+html {
+    perspective: 1500px;
     background-color: #000;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background-color: transparent;
     font-family: 'Courier New', monospace;
     color: #00ff00;
     height: 100vh;
@@ -14,35 +21,47 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow: hidden;
     position: relative;
     padding: 20px;
 }
 
-/* look.css */
-
-html, body {
+/* Top Half Fisheye Bezel (Tilts away 5deg) */
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    overflow: hidden;
+    height: 50%;
+    transform: perspective(1200px) rotateX(5deg);
+    transform-origin: top center;
+    border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+    box-shadow: 
+        inset 0 50px 80px rgba(0, 0, 0, 0.95),
+        inset 0 10px 30px rgba(0, 255, 0, 0.1);
+    pointer-events: none;
+    z-index: 9997;
 }
 
-body {
-    /* Applies the SVG distortion filter to bend top and bottom content */
-    filter: url(#fisheye);
-    
-    font-family: 'Courier New', monospace;
-    color: #00ff00;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 30px;
+/* Bottom Half Fisheye Bezel (Tilts away -5deg) */
+html::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform: perspective(1200px) rotateX(-5deg);
+    transform-origin: bottom center;
+    border-radius: 0 0 50% 50% / 0 0 20% 20%;
+    box-shadow: 
+        inset 0 -50px 80px rgba(0, 0, 0, 0.95),
+        inset 0 -10px 30px rgba(0, 255, 0, 0.1);
+    pointer-events: none;
+    z-index: 9998;
 }
-/* Fisheye vignette overlay */
+
+/* Full-screen Center Vignette */
 body::before {
     content: '';
     position: fixed;
@@ -53,11 +72,11 @@ body::before {
     background: radial-gradient(
         ellipse at center,
         transparent 0%,
-        rgba(0, 0, 0, 0.2) 50%,
-        rgba(0, 0, 0, 0.6) 100%
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.8) 100%
     );
     pointer-events: none;
-    z-index: 9997;
+    z-index: 9999;
 }
 
 /* CRT scanline effect */
@@ -76,9 +95,8 @@ body::after {
         transparent 2px
     );
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
 }
-
 
 
 /* ========================================
