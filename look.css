@@ -10,10 +10,12 @@ body {
     color: #00ff00;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: top-left;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     overflow: hidden;
     position: relative;
+    padding: 20px;
 }
 
 /* CRT scanline effect */
