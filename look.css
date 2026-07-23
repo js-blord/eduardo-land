@@ -71,15 +71,19 @@ body::after {
 
 /* ========================================
    FLICKER OVERLAY SECTIONS FOR BLANK SCREEN AREAS
+   LOW OPACITY FILLED VERSION
+   
+   Map morse code sequences in Node.js MORSE_SEQUENCES object.
+   Each section will pulse based on its configured timing.
    ======================================== */
 
-/* Base flicker section styling */
+/* Base flicker section styling - filled with low opacity */
 .flicker-section {
     position: fixed;
     pointer-events: none;
     z-index: 8000;
-    border: 2px solid rgba(0, 255, 0, 0);
-    box-shadow: inset 0 0 20px rgba(0, 255, 0, 0);
+    background: rgba(0, 255, 0, 0.08);
+    border: none;
 }
 
 /* Top-left flicker section */
@@ -92,12 +96,12 @@ body::after {
 }
 
 @keyframes flicker-top-left-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    8%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    10%  { opacity: 0.15; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    11%  { opacity: 1; box-shadow: inset 0 0 40px rgba(0, 255, 0, 0.6), 0 0 60px rgba(0, 255, 0, 0.8), 0 0 80px rgba(0, 255, 0, 0.5); }
-    12%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    8%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    10%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    11%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    12%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* Top-right flicker section */
@@ -110,12 +114,12 @@ body::after {
 }
 
 @keyframes flicker-top-right-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    25%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    33%  { opacity: 0.2; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    34%  { opacity: 1; box-shadow: inset 0 0 40px rgba(0, 255, 0, 0.6), 0 0 60px rgba(0, 255, 0, 0.8), 0 0 80px rgba(0, 255, 0, 0.5); }
-    35%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    25%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    33%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    34%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    35%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* Middle-left flicker section */
@@ -128,12 +132,12 @@ body::after {
 }
 
 @keyframes flicker-middle-left-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    50%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    58%  { opacity: 0.1; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    59%  { opacity: 1; box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.7), 0 0 70px rgba(0, 255, 0, 0.9), 0 0 100px rgba(0, 255, 0, 0.6); }
-    60%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    58%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    59%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    60%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* Middle-right flicker section */
@@ -146,12 +150,12 @@ body::after {
 }
 
 @keyframes flicker-middle-right-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    75%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    83%  { opacity: 0.12; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    84%  { opacity: 1; box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.7), 0 0 70px rgba(0, 255, 0, 0.9), 0 0 100px rgba(0, 255, 0, 0.6); }
-    85%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    75%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    83%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    84%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    85%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* Bottom-left flicker section */
@@ -164,12 +168,12 @@ body::after {
 }
 
 @keyframes flicker-bottom-left-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    10%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    18%  { opacity: 0.15; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    19%  { opacity: 1; box-shadow: inset 0 0 45px rgba(0, 255, 0, 0.65), 0 0 65px rgba(0, 255, 0, 0.85), 0 0 90px rgba(0, 255, 0, 0.55); }
-    20%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    10%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    18%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    19%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    20%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* Bottom-right flicker section */
@@ -182,105 +186,16 @@ body::after {
 }
 
 @keyframes flicker-bottom-right-anim {
-    0%   { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    40%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    48%  { opacity: 0.18; box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1), 0 0 10px rgba(0, 255, 0, 0.1); }
-    49%  { opacity: 1; box-shadow: inset 0 0 45px rgba(0, 255, 0, 0.65), 0 0 65px rgba(0, 255, 0, 0.85), 0 0 90px rgba(0, 255, 0, 0.55); }
-    50%  { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
-    100% { opacity: 1; box-shadow: inset 0 0 20px rgba(0, 255, 0, 0), 0 0 30px rgba(0, 255, 0, 0); }
+    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    40%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    48%  { opacity: 0.15; background: rgba(0, 255, 0, 0.12); }
+    49%  { opacity: 0.25; background: rgba(0, 255, 0, 0.20); }
+    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
+    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.05); }
 }
 
 /* ========================================
-   CONFIGURABLE FLICKER SEQUENCE ANIMATIONS
-   BRIGHT AND VISIBLE VERSION
-   ======================================== */
-
-/* Master cycle: 4-second loop for coordinated flickers */
-@keyframes flicker-cycle-slow {
-    0%   { opacity: 1; }
-    8%   { opacity: 1; }
-    10%  { opacity: 0.1; }
-    12%  { opacity: 1; }
-    100% { opacity: 1; }
-}
-
-/* Top section flicker - starts at 0% - BRIGHT VERSION */
-@keyframes flicker-top {
-    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
-    8%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
-    10%  { opacity: 0.15; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; }
-    11%  { opacity: 1; text-shadow: 0 0 30px #00ff00, 0 0 50px #00ff00, 0 0 70px #00ff00; }
-    12%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; }
-}
-
-/* Middle section flicker - starts at 25% (1 second delayed) - BRIGHT VERSION */
-@keyframes flicker-middle {
-    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
-    25%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
-    33%  { opacity: 0.2; text-shadow: 0 0 5px #00ff00; }
-    34%  { opacity: 1; text-shadow: 0 0 25px #00ff00, 0 0 40px #00ff00, 0 0 60px #00ff00; }
-    35%  { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
-    100% { opacity: 1; text-shadow: 0 0 10px #00ff00, 0 0 15px #00ff00; }
-}
-
-/* Bottom section flicker - starts at 50% (2 seconds delayed) - BRIGHT VERSION */
-@keyframes flicker-bottom {
-    0%   { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
-    50%  { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
-    58%  { opacity: 0.1; box-shadow: 0 0 5px rgba(0, 255, 0, 0.1), inset 0 0 5px rgba(0, 255, 0, 0.1); text-shadow: 0 0 3px #00ff00; }
-    59%  { opacity: 1; box-shadow: 0 0 40px rgba(0, 255, 0, 1), 0 0 60px rgba(0, 255, 0, 0.8), inset 0 0 20px rgba(0, 255, 0, 0.4); text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
-    60%  { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
-    100% { opacity: 1; box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3); text-shadow: 0 0 10px #00ff00; }
-}
-
-/* Input/Interactive section flicker - starts at 75% (3 seconds delayed) - BRIGHT VERSION */
-@keyframes flicker-input {
-    0%   { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
-    75%  { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
-    83%  { opacity: 0.12; text-shadow: 0 0 3px #00ff00; box-shadow: 0 0 3px rgba(0, 255, 0, 0.1); }
-    84%  { opacity: 1; text-shadow: 0 0 20px #00ff00, 0 0 35px #00ff00, 0 0 50px #00ff00; box-shadow: 0 0 30px rgba(0, 255, 0, 0.9), 0 0 50px rgba(0, 255, 0, 0.7), inset 0 0 15px rgba(0, 255, 0, 0.3); }
-    85%  { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
-    100% { opacity: 1; text-shadow: 0 0 10px #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.4); }
-}
-
-/* Enhanced CRT glow effect with more brightness */
-@keyframes crt-glow {
-    0%, 100% {
-        text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-    }
-    25% {
-        text-shadow: 0 0 5px #00ff00, 0 0 15px #00ff00, 0 0 25px #00ff00;
-    }
-    50% {
-        text-shadow: 0 0 8px #00ff00, 0 0 18px #00ff00, 0 0 28px #00ff00;
-    }
-    75% {
-        text-shadow: 0 0 12px #00ff00, 0 0 22px #00ff00, 0 0 32px #00ff00;
-    }
-}
-
-/* Glitch effect for text elements */
-@keyframes text-glitch {
-    0%, 100% {
-        text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-    }
-    20% {
-        text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff, 0 0 10px #00ff00;
-    }
-    40% {
-        text-shadow: 0 0 15px #00ff00, 0 0 25px #00ff00, 0 0 35px #00ff00;
-    }
-    60% {
-        text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff, 0 0 10px #00ff00;
-    }
-    80% {
-        text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
-    }
-}
-
-/* ========================================
-   SECTION-SPECIFIC STYLING
+   TEXT AND FORM STYLING (NO FLICKER)
    ======================================== */
 
 h1 {
@@ -290,8 +205,8 @@ h1 {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    animation: flicker-top 4s infinite;
     font-weight: bold;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
 }
 
 p {
@@ -299,7 +214,7 @@ p {
     color: #00ff00;
     margin-bottom: 20px;
     font-size: 14px;
-    animation: flicker-middle 4s infinite;
+    text-shadow: 0 0 5px #00ff00;
 }
 
 label {
@@ -310,7 +225,7 @@ label {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 12px;
-    animation: flicker-middle 4s infinite;
+    text-shadow: 0 0 5px #00ff00;
 }
 
 input[type="text"],
@@ -324,8 +239,8 @@ input[type="password"] {
     font-family: 'Courier New', monospace;
     font-size: 14px;
     transition: all 0.2s;
-    animation: flicker-input 4s infinite;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 5px #00ff00;
 }
 
 input[type="text"]::placeholder,
@@ -356,8 +271,8 @@ button {
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 10px;
-    animation: flicker-input 4s infinite;
     box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    text-shadow: 0 0 5px #00ff00;
 }
 
 button:hover {
@@ -385,8 +300,8 @@ a {
     letter-spacing: 1px;
     transition: all 0.2s;
     cursor: pointer;
-    animation: flicker-bottom 4s infinite;
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+    text-shadow: 0 0 10px #00ff00;
 }
 
 a:hover {
@@ -401,31 +316,5 @@ a:hover {
     color: #00ff00;
     font-family: 'Courier New', monospace;
     font-size: 12px;
-    animation: flicker-bottom 4s infinite;
     text-shadow: 0 0 10px #00ff00;
-}
-
-/* ========================================
-   CUSTOM FLICKER MAPPING
-   Add these classes to HTML elements to use custom sequences
-   
-   Usage: <div class="flicker-custom-1">Content</div>
-   
-   Then define the animation timing in your HTML or extend here
-   ======================================== */
-
-.flicker-custom-1 {
-    animation: flicker-top 4s infinite;
-}
-
-.flicker-custom-2 {
-    animation: flicker-middle 4s infinite;
-}
-
-.flicker-custom-3 {
-    animation: flicker-bottom 4s infinite;
-}
-
-.flicker-custom-4 {
-    animation: flicker-input 4s infinite;
 }
