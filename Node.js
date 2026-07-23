@@ -2,11 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 
-const MORSE_SEQUENCES = {
-    'top-left': '.... . .-.. .-.. ---',      // HELLO
-    'top-right': '... --- ...',               // SOS
-    // etc.
-};
+
 
 // Parse incoming request bodies
 app.use(express.static(__dirname));
