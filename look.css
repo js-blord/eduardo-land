@@ -18,7 +18,7 @@ body {
     padding: 20px;
 }
 
-/* Fisheye/curved monitor distortion effect */
+/* Fisheye/curved monitor distortion effect - extends to bottom half */
 html {
     perspective: 1500px;
 }
@@ -32,7 +32,7 @@ body {
         inset 0 0 30px rgba(0, 255, 0, 0.1);
 }
 
-/* Fisheye vignette overlay */
+/* Fisheye vignette overlay - full screen coverage with enhanced bottom distortion */
 body::before {
     content: '';
     position: fixed;
@@ -48,10 +48,32 @@ body::before {
     );
     pointer-events: none;
     z-index: 9997;
+    /* Apply additional fisheye distortion to bottom half */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Additional fisheye effect overlay for bottom half */
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: radial-gradient(
+        ellipse at 50% -50%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 30%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    pointer-events: none;
+    z-index: 9998;
+    /* Enhanced fisheye curvature for bottom portion */
+    border-radius: 100% 100% 0 0 / 50% 50% 0 0;
 }
 
 /* CRT scanline effect */
-body::after {
+::before {
     content: '';
     position: fixed;
     top: 0;
@@ -92,7 +114,7 @@ body::after {
     left: 20px;
     width: 25%;
     height: 20%;
-    animation: flicker-top-left-anim 4s infinite;
+    animation: flicker-top-left-anim 8s infinite;
 }
 
 @keyframes flicker-top-left-anim {
@@ -110,7 +132,7 @@ body::after {
     right: 20px;
     width: 25%;
     height: 20%;
-    animation: flicker-top-right-anim 4s infinite;
+    animation: flicker-top-right-anim 8s infinite;
 }
 
 @keyframes flicker-top-right-anim {
@@ -128,7 +150,7 @@ body::after {
     left: 20px;
     width: 15%;
     height: 30%;
-    animation: flicker-middle-left-anim 4s infinite;
+    animation: flicker-middle-left-anim 8s infinite;
 }
 
 @keyframes flicker-middle-left-anim {
@@ -146,7 +168,7 @@ body::after {
     right: 20px;
     width: 15%;
     height: 30%;
-    animation: flicker-middle-right-anim 4s infinite;
+    animation: flicker-middle-right-anim 8s infinite;
 }
 
 @keyframes flicker-middle-right-anim {
@@ -164,7 +186,7 @@ body::after {
     left: 20px;
     width: 20%;
     height: 15%;
-    animation: flicker-bottom-left-anim 4s infinite;
+    animation: flicker-bottom-left-anim 8s infinite;
 }
 
 @keyframes flicker-bottom-left-anim {
@@ -182,7 +204,7 @@ body::after {
     right: 20px;
     width: 20%;
     height: 15%;
-    animation: flicker-bottom-right-anim 4s infinite;
+    animation: flicker-bottom-right-anim 8s infinite;
 }
 
 @keyframes flicker-bottom-right-anim {
