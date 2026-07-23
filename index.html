@@ -8,16 +8,24 @@
     <title>Login</title>
 </head>
 <body>
-<form action="/login" method="post">
-    <div class="container">
-        <label for="UID"><b> </b></label>
-        <input type="text" id="UID" placeholder=" " name="uname" >
+    <!-- Flicker overlay sections for CRT screen effect -->
+    <div class="flicker-section flicker-top-left"></div>
+    <div class="flicker-section flicker-top-right"></div>
+    <div class="flicker-section flicker-middle-left"></div>
+    <div class="flicker-section flicker-middle-right"></div>
+    <div class="flicker-section flicker-bottom-left"></div>
+    <div class="flicker-section flicker-bottom-right"></div>
 
-        <label for="PW"><b> </b></label>
-        <input type="password" id="PW" placeholder=" " name="psw" >
+    <form action="/login" method="post">
+        <div class="container">
+            <label for="UID"><b> </b></label>
+            <input type="text" id="UID" placeholder=" " name="uname" >
 
-        <button type="submit"> </button>
-    </div>
-</form>
+            <label for="PW"><b> </b></label>
+            <input type="password" id="PW" placeholder=" " name="psw" >
+
+            <button type="submit"> </button>
+        </div>
+    </form>
 </body>
 </html>
