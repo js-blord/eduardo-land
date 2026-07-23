@@ -8,7 +8,7 @@ body {
     background-color: #000;
     font-family: 'Courier New', monospace;
     color: #00ff00;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -24,7 +24,7 @@ html {
 }
 
 body {
-    transform: perspective(1200px) rotateX(5deg);
+    transform: perspective(1200px) ;
     transform-style: preserve-3d;
     border-radius: 50%;
     box-shadow: 
