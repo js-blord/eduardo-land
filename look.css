@@ -4,19 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: #000;
-    font-family: 'Courier New', monospace;
-    color: #00ff00;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    overflow: hidden;
-    position: relative;
-    padding: 20px;
-}
+
 
 /* Fisheye/curved monitor distortion effect */
 html {
@@ -31,7 +19,19 @@ body {
         inset 0 0 80px rgba(0, 0, 0, 0.8),
         inset 0 0 30px rgba(0, 255, 0, 0.1);
 }
-
+body {
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
 /* Fisheye vignette overlay */
 body::before {
     content: '';
