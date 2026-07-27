@@ -196,11 +196,10 @@ html::after {
 
 @keyframes flicker-bottom-left-anim {
     0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    9%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    10%  { opacity: 1; background: rgba(0, 255, 0, 0.02); }
-    12%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
-    40%  { opacity: 0.1; background: rgba(0, 255, 0, 0.12); }
-    42%  { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
+    40%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    48%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
+    49%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
+    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
     100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
@@ -350,3 +349,17 @@ input[type="password"] {
     font-family: sans-serif; /* or 'Courier New', monospace */
     letter-spacing: 2px; /* Optional: adds a bit of retro spacing between the dots */
 }
+/* 
+    LITTLE THINGS
+    YOUR TIME RUNS THIN
+    WHAT MADE YOU THINK
+    FATE IS YOURS 
+    TO WEAVE
+    LET THESE WORLDS
+    BE TORN 
+    ASUNDER
+    LOOK AROUND
+    DONT YOU SEE
+    HOW GREAT
+    IT IS?
+*/
