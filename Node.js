@@ -36,7 +36,7 @@ app.use(session({
    Adjust timing in look.css if needed.
    ======================================== */
 
-const MORSE_SEQUENCES = {
+const AUTO_SEQUENCES = {
     'top-left': '..-/-./-.-/-./---/.--/-. -.-./---/-./-././-.-./-/../---/-.',      // UNKNOWN CONNECTION
     'top-right': '-.-./---/--/-- ./.../-/.-/-.../.-../../.../...././-..',               // COMM ESTABLISHED
     'middle-left': '...././.-../.-../--- ...././.-./---/./...',                  // HELLO HEROES
@@ -76,7 +76,7 @@ const FLICKER_CONFIG = {
 };
 
 // Helper function to convert morse code to CSS animation keyframes
-function morseToKeyframes(morseCode, sectionName) {
+function flickerAutoKeyframes(morseCode, sectionName) {
     // This would be sent to client-side JavaScript to dynamically generate keyframes
     // For now, the morse sequences are stored and can be read by frontend
     return {
