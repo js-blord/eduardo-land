@@ -196,10 +196,11 @@ html::after {
 
 @keyframes flicker-bottom-left-anim {
     0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    10%  { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
+    9%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    10%  { opacity: 1; background: rgba(0, 255, 0, 0.02); }
     12%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
-    40%  { opacity: 0.9; background: rgba(0, 255, 0, 0.12); }
-    42%  { opacity: 0.1; background: rgba(0, 255, 0, 0.02); }
+    40%  { opacity: 0.1; background: rgba(0, 255, 0, 0.12); }
+    42%  { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
     100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
 }
 
