@@ -37,12 +37,12 @@ app.use(session({
    ======================================== */
 
 const MORSE_SEQUENCES = {
-    'top-left': '..- -. -.- -. --- .-- -.   -.-. --- -. -. . -.-. - .. --- -.',      // UNKNOWN CONNECTION
-    'top-right': '-.-. --- -- --   . ... - .- -... .-.. .. ... .... . -..',               // COMM ESTABLISHED
-    'middle-left': '.... . .-.. .-.. ---   .... . .-. --- . ...',                  // HELLO HEROES
-    'middle-right': '.- -. -..   .-- . .-.. -.-. --- -- .',       // AND WELCOME
-    'bottom-left': '. --. --.   -.. .. .-.', // EGG DIR
-    'bottom-right': '-... . --. .. -.'              // BEGIN
+    'top-left': '..-/-./-.-/-./---/.--/-. -.-./---/-./-././-.-./-/../---/-.',      // UNKNOWN CONNECTION
+    'top-right': '-.-./---/--/-- ./.../-/.-/-.../.-../../.../...././-..',               // COMM ESTABLISHED
+    'middle-left': '...././.-../.-../--- ...././.-./---/./...',                  // HELLO HEROES
+    'middle-right': '.-/-./-.. .--/./.-../-.-./---/--/.',       // AND WELCOME
+    'bottom-left': '. --./--. -../../.-.', // EGG DIR
+    'bottom-right': '-..././--./../-.'              // BEGIN
 };
 
 /* ========================================
@@ -67,12 +67,12 @@ const MORSE_SEQUENCES = {
    ======================================== */
 
 const FLICKER_CONFIG = {
-    'top-left': { offset: 10, duration: 8000 },
-    'top-right': { offset: 33, duration: 8000 },
-    'middle-left': { offset: 58, duration: 8000 },
-    'middle-right': { offset: 83, duration: 8000 },
-    'bottom-left': { offset: 18, duration: 8000 },
-    'bottom-right': { offset: 48, duration: 8000 }
+    'top-left': { offset: 10, duration: 6000 },
+    'top-right': { offset: 33, duration: 6000 },
+    'middle-left': { offset: 58, duration: 6000 },
+    'middle-right': { offset: 83, duration: 6000 },
+    'bottom-left': { offset: 18, duration: 6000 },
+    'bottom-right': { offset: 48, duration: 6000 }
 };
 
 // Helper function to convert morse code to CSS animation keyframes
