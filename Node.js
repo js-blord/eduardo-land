@@ -76,7 +76,7 @@ const FLICKER_CONFIG = {
 };
 
 // Helper function to convert morse code to CSS animation keyframes
-function flickerAutoKeyframes(morseCode, sectionName) {
+function flickerAutoKeyframes(sequenceCode, sectionName) {
     const config = FLICKER_CONFIG[sectionName];
     const animationName = `${sectionName}-anim-dynamic`;
     
@@ -91,8 +91,8 @@ function flickerAutoKeyframes(morseCode, sectionName) {
     let keyframes = `@keyframes ${animationName} {\n`;
     keyframes += `  0% { ${offState} }\n`;
     
-    for (let i = 0; i < morseCode.length; i++) {
-        const char = morseCode[i];
+    for (let i = 0; i < sequenceCode.length; i++) {
+        const char = sequenceCode[i];
         let isOn = false;
         let duration = 0;
         
@@ -125,7 +125,7 @@ function flickerAutoKeyframes(morseCode, sectionName) {
             currentTime += duration;
             
             // Intra-character gap (standard 200ms gap between dots/dashes of the same letter)
-            if (i + 1 < morseCode.length && (morseCode[i+1] === '.' || morseCode[i+1] === '-')) {
+            if (i + 1 < sequenceCode.length && (sequenceCode[i+1] === '.' || sequenceCode[i+1] === '-')) {
                 currentTime += 200; 
             }
         }
@@ -136,7 +136,7 @@ function flickerAutoKeyframes(morseCode, sectionName) {
     
     return {
         section: sectionName,
-        morse: morseCode,
+        morse: sequenceCode,
         css: keyframes,
         config: config
     };
