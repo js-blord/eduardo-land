@@ -345,3 +345,7 @@ a:hover {
     font-size: 18px;
     text-shadow: 0 0 10px #00ff00;
 }
+input[type="password"] {
+    font-family: sans-serif; /* or 'Courier New', monospace */
+    letter-spacing: 2px; /* Optional: adds a bit of retro spacing between the dots */
+}
