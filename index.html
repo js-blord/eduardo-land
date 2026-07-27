@@ -37,8 +37,8 @@ RECOMMEND FINDING HIGHER GROUND
         </div>
     </form>
     <script>
-        // Fetch the morse sequences from the server
-        fetch('/api/morse-sequences')
+        // Fetch the sequences from the server
+        fetch('/api/final-sequences')
             .then(response => response.json())
             .then(sequences => {
                 const style = document.createElement('style');
@@ -50,7 +50,7 @@ RECOMMEND FINDING HIGHER GROUND
                 const totalDurationMs = 8000; // 8 second cycle
                 
                 // Build dynamic keyframes and attach classes for each sequence
-                for (const [sectionName, morseCode] of Object.entries(sequences)) {
+                for (const [sectionName, sequenceCode] of Object.entries(sequences)) {
                     // Use a selector class matching your look.css naming convention
                     const targetClass = `.flicker-${sectionName}`; 
                     const animationName = `${sectionName}-anim-dynamic`;
@@ -59,8 +59,8 @@ RECOMMEND FINDING HIGHER GROUND
                     let keyframes = `@keyframes ${animationName} {\n`;
                     keyframes += `  0% { ${offState} }\n`;
                     
-                    for (let i = 0; i < morseCode.length; i++) {
-                        const char = morseCode[i];
+                    for (let i = 0; i < sequenceCode.length; i++) {
+                        const char = sequenceCode[i];
                         let isOn = false;
                         let duration = 0;
                         
@@ -81,7 +81,7 @@ RECOMMEND FINDING HIGHER GROUND
                             currentTime += duration;
                             
                             // 200ms gap between symbols of the same letter
-                            if (i + 1 < morseCode.length && (morseCode[i+1] === '.' || morseCode[i+1] === '-')) {
+                            if (i + 1 < sequenceCode.length && (sequenceCode[i+1] === '.' || sequenceCode[i+1] === '-')) {
                                 currentTime += 200;
                             }
                         }
@@ -96,7 +96,7 @@ RECOMMEND FINDING HIGHER GROUND
                 style.innerHTML = dynamicCSS;
                 document.head.appendChild(style);
             })
-            .catch(err => console.error('Failed to load intradimensional morse sequences:', err));
+            .catch(err => console.error('Failed to load:', err));
     </script>
 </body>
 </html>
