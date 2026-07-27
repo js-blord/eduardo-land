@@ -96,7 +96,56 @@ html::after {
     border-radius: 100% 100% 0 0 / 50% 50% 0 0;
 }
 
+.flicker-section {
+    position: fixed;
+    pointer-events: none;
+    z-index: 8000;
+    background: rgba(0, 255, 0, 0.02);
+    border: none;
+}
 
+/* Base positioning for sections */
+.flicker-top-left {
+    top: 20px;
+    left: 20px;
+    width: 25%;
+    height: 20%;
+}
+
+.flicker-top-right {
+    top: 20px;
+    right: 20px;
+    width: 25%;
+    height: 20%;
+}
+
+.flicker-middle-left {
+    top: 40%;
+    left: 20px;
+    width: 15%;
+    height: 30%;
+}
+
+.flicker-middle-right {
+    top: 40%;
+    right: 20px;
+    width: 15%;
+    height: 30%;
+}
+
+.flicker-bottom-left {
+    bottom: 20px;
+    left: 20px;
+    width: 20%;
+    height: 15%;
+}
+
+.flicker-bottom-right {
+    bottom: 20px;
+    right: 20px;
+    width: 20%;
+    height: 15%;
+}
 
 /* ========================================
    TEXT AND FORM STYLING (NO FLICKER)
