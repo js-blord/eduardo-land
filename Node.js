@@ -150,7 +150,7 @@ app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/api/morse-sequences', (req, res) => {
+app.get('/api/final-sequences', (req, res) => {
     // Endpoint to fetch morse sequences for dynamic animation generation
     res.json(AUTO_SEQUENCES);
 });
