@@ -7,23 +7,7 @@ ALIEN CONNECTION UNRELIABLE
 STABILIZATION IN PROGRESS
 RECOMMEND FINDING HIGHER GROUND
 -->
-    <script>
-    // Fetch sequences and dynamically construct keyframes
-    fetch('/api/morse-sequences')
-        .then(response => response.json())
-        .then(data => {
-            const style = document.createElement('style');
-            let dynamicCSS = '';
-            
-            // Loop through sequences (Requires slightly adjusting your API route to return the output of your new function)
-            for (const [section, sequence] of Object.entries(data)) {
-                 // Note: If you run flickerAutoKeyframes on the server, you will append the returned .css property here. 
-            }
-            
-            style.innerHTML = dynamicCSS;
-            document.head.appendChild(style);
-        });
-</script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
