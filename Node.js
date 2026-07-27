@@ -77,12 +77,68 @@ const FLICKER_CONFIG = {
 
 // Helper function to convert morse code to CSS animation keyframes
 function flickerAutoKeyframes(morseCode, sectionName) {
-    // This would be sent to client-side JavaScript to dynamically generate keyframes
-    // For now, the morse sequences are stored and can be read by frontend
+    const config = FLICKER_CONFIG[sectionName];
+    const animationName = `${sectionName}-anim-dynamic`;
+    
+    // Cycle defined as 8 seconds in the server configuration notes
+    const totalDurationMs = 8000; 
+    let currentTime = 0;
+    
+    // CSS States mapping back to your front-end look.css styles
+    const offState = `opacity: 0.05; background: rgba(0, 255, 0, 0.02);`;
+    const onState = `opacity: 0.25; background: rgba(0, 255, 0, 0.12);`;
+    
+    let keyframes = `@keyframes ${animationName} {\n`;
+    keyframes += `  0% { ${offState} }\n`;
+    
+    for (let i = 0; i < morseCode.length; i++) {
+        const char = morseCode[i];
+        let isOn = false;
+        let duration = 0;
+        
+        // Map morse symbols to timings (in ms)
+        if (char === '.') {
+            isOn = true;
+            duration = 200;
+        } else if (char === '-') {
+            isOn = true;
+            duration = 600;
+        } else if (char === '/') {
+            currentTime += 400; // Letter separator pause
+            continue;
+        } else if (char === ' ') {
+            currentTime += 1200; // Word separator pause
+            continue;
+        }
+        
+        if (isOn) {
+            // Convert milliseconds to CSS keyframe percentages
+            let startPct = (currentTime / totalDurationMs * 100);
+            let endPct = ((currentTime + duration) / totalDurationMs * 100);
+            
+            // Add a tiny 0.1% buffer to create sharp on/off transitions rather than slow fades
+            keyframes += `  ${Math.max(0, startPct - 0.1).toFixed(2)}% { ${offState} }\n`;
+            keyframes += `  ${startPct.toFixed(2)}% { ${onState} }\n`;
+            keyframes += `  ${endPct.toFixed(2)}% { ${onState} }\n`;
+            keyframes += `  ${Math.min(100, endPct + 0.1).toFixed(2)}% { ${offState} }\n`;
+            
+            currentTime += duration;
+            
+            // Intra-character gap (standard 200ms gap between dots/dashes of the same letter)
+            if (i + 1 < morseCode.length && (morseCode[i+1] === '.' || morseCode[i+1] === '-')) {
+                currentTime += 200; 
+            }
+        }
+    }
+    
+    // Ensure the animation closes on the off state
+    keyframes += `  100% { ${offState} }\n}`;
+    
     return {
         section: sectionName,
         morse: morseCode,
-        config: FLICKER_CONFIG[sectionName]
+        css: keyframes,
+        config: config
     };
 }
 
