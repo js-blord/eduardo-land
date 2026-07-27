@@ -195,12 +195,12 @@ html::after {
 }
 
 @keyframes flicker-bottom-left-anim {
-    0%   { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    40%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    48%  { opacity: 0.15; background: rgba(0, 255, 0, 0.08); }
-    49%  { opacity: 0.25; background: rgba(0, 255, 0, 0.12); }
-    50%  { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
-    100% { opacity: 0.05; background: rgba(0, 255, 0, 0.02); }
+    0%   { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
+    40%  { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
+    48%  { opacity: 0.9; background: rgba(0, 255, 0, 0.08); }
+    49%  { opacity: 0.9; background: rgba(0, 255, 0, 0.12); }
+    50%  { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
+    100% { opacity: 0.9; background: rgba(0, 255, 0, 0.02); }
 }
 
 /* Bottom-right flicker section */
