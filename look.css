@@ -191,7 +191,7 @@ html::after {
     left: 20px;
     width: 20%;
     height: 15%;
-    animation: flicker-bottom-left-anim 8s infinite;
+    animation: flicker-bottom-left-anim 3s infinite;
 }
 
 @keyframes flicker-bottom-left-anim {
