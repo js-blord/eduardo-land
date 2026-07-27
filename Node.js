@@ -37,12 +37,12 @@ app.use(session({
    ======================================== */
 
 const MORSE_SEQUENCES = {
-    'top-left': '.... . .-.. .-.. ---',      // HELLO
-    'top-right': '... --- ...',               // SOS
-    'middle-left': '.-.-.-',                  // Error/repeating
-    'middle-right': '.... . -.-- -.--',       // HEYY
-    'bottom-left': '--. --- --- -..   .-..-- ..-.', // GOOD LY
-    'bottom-right': '-.-- . ...'              // YET
+    'top-left': '..- -. -.- -. --- .-- -.   -.-. --- -. -. . -.-. - .. --- -.',      // UNKNOWN CONNECTION
+    'top-right': '-.-. --- -- --   . ... - .- -... .-.. .. ... .... . -..',               // COMM ESTABLISHED
+    'middle-left': '.... . .-.. .-.. ---   .... . .-. --- . ...',                  // HELLO HEROES
+    'middle-right': '.- -. -..   .-- . .-.. -.-. --- -- .',       // AND WELCOME
+    'bottom-left': '. --. --.   -.. .. .-.', // EGG DIR
+    'bottom-right': '-... . --. .. -.'              // BEGIN
 };
 
 /* ========================================
