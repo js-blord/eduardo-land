@@ -152,7 +152,7 @@ app.get('/login', (req, res) => {
 
 app.get('/api/morse-sequences', (req, res) => {
     // Endpoint to fetch morse sequences for dynamic animation generation
-    res.json(MORSE_SEQUENCES);
+    res.json(AUTO_SEQUENCES);
 });
 
 app.get('/api/flicker-config', (req, res) => {
