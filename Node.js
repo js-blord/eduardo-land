@@ -167,14 +167,14 @@ app.post('/login', (req, res) => {
     if (uname === "XLTL3902SEADMIN" && psw === "CULLEDENERGY") {
         // Create secure session
         req.session.authenticated = true;
-        res.redirect('/dashboard');
+        res.redirect('/aW5ib3g');
     } else {
         res.redirect('/login');
     }
 });
 
-app.get('/dashboard', (req, res) => {
-    res.sendFile(__dirname + '/dashboard.html');
+app.get('/aW5ib3g', (req, res) => {
+    res.sendFile(__dirname + '/aW5ib3g.html');
 });
 
 app.get('/logout', (req, res) => {
