@@ -98,15 +98,28 @@ RECOMMEND FINDING HIGHER GROUND
             })
             .catch(err => console.error('Failed to load:', err));
     </script>
-<audio id="bg-audio" loop>
-  ./static.wav" type="audio/wav">
-    </audio>
+<!-- The invisible audio file -->
+<audio id="bgMusic" src="static.wav" loop></audio>
 
-    <script>
-    window.addEventListener('click', () => {
-      document.getElementById('bg-audio').play();
-    }, { once: true });
-    </script>
+<!-- The Script -->
+<script>
+  const audio = document.getElementById('bgMusic');
+
+  // Create a function that plays the audio
+  const startBackgroundMusic = () => {
+    audio.play().catch(error => {
+      console.log("Autoplay blocked by browser:", error);
+    });
+    
+    // Remove the listeners once the music starts so it doesn't restart on every click
+    document.removeEventListener('click', startBackgroundMusic);
+    document.removeEventListener('keydown', startBackgroundMusic);
+  };
+
+  // Listen for the user's first click or key press anywhere on the page
+  document.addEventListener('click', startBackgroundMusic);
+  document.addEventListener('keydown', startBackgroundMusic);
+</script>
 
 </body>
 </html>
