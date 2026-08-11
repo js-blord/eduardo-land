@@ -165,7 +165,7 @@
             {
                 subject: 'Welcome to the southeast Aham power facility Gregory!',
                 from: 'no-reply@sys.local',
-                body: `We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. Please overview this onboarding document to understand your role.`,
+                body: `We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. Please overview this onboarding document to understa[...]`,
                 attachment: null
             }
         ];
@@ -203,7 +203,7 @@
                 item.appendChild(right);
 
                 // attach event listener that captures the current idx correctly
-                item.addEventListener('click', () => openEmail(idx));
+                item.addEventListener('click', (ev) => { ev.stopPropagation(); openEmail(idx); });
 
                 emailList.appendChild(item);
             });
