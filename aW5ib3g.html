@@ -58,7 +58,7 @@
             padding: 22px;
             z-index: 10000;
             width: 80%;
-            max-width: 800px;
+            max-width: 900px;
             box-shadow: 0 0 30px rgba(0,255,0,0.6);
         }
         .email-modal.hidden { display: none; }
@@ -71,7 +71,7 @@
         .email-modal .modal-body {
             white-space: pre-wrap;
             line-height: 1.4;
-            max-height: 70vh; /* increased so longer emails aren't cut off */
+            max-height: 80vh; /* increased so longer emails aren't cut off */
             overflow: auto;
             margin-bottom: 16px;
         }
@@ -97,15 +97,26 @@
             background-color: #00ff00;
             color: #000;
         }
-        /* small, inline close button that just shows an X and doesn't overflow */
+        /* styled close button: shows a plain ASCII 'X', has a visible border, and stays inside the modal */
         .close-x {
-            background: transparent;
-            border: none;
+            background-color: #000;
+            border: 2px solid #00ff00;
             color: #00ff00;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
-            padding: 6px; /* keeps the hit area reasonable without hanging over */
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            padding: 0;
             line-height: 1;
+            border-radius: 4px;
+        }
+        .close-x:hover {
+            background-color: #00ff00;
+            color: #000;
         }
         .no-emails { opacity: 0.8; }
         @media(min-width:700px) {
@@ -128,7 +139,7 @@
                 <div id="modalFrom" class="email-meta">From: someone@example.com</div>
             </div>
             <div class="modal-actions">
-                <button id="closeModal" class="close-x" aria-label="Close">&times;</button>
+                <button id="closeModal" class="close-x" aria-label="Close">X</button>
             </div>
         </div>
         <div id="modalBody" class="modal-body">Email body...</div>
@@ -161,13 +172,13 @@
             {
                 subject: 'What is egg dir?',
                 from: 'no-reply@sys.local',
-                body: ``,
+                body: `Egg Dir is an internal shorthand for our deployment directory tooling. It contains scripts and configuration used by ops to create reproducible runtime environments for small edge nodes. If you need more detail, reply and we can forward the docs.`,
                 attachment: null
             },
             {
                 subject: 'Welcome to the southeast Aham power facility Gregory!',
                 from: 'no-reply@sys.local',
-                body: `We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. Please overview this onboarding document to understa[...]`,
+                body: `We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. Please review the onboarding document attached to this message for full details on safety, shift schedules, and access procedures. Reach out to HR or your supervisor if anything is unclear — we're excited to have you aboard.`,
                 attachment: null
             }
         ];
