@@ -126,8 +126,6 @@
                 <div id="modalFrom" class="email-meta">From: someone@example.com</div>
             </div>
             <div class="modal-actions">
-                <button id="prevBtn" class="btn">Prev</button>
-                <button id="nextBtn" class="btn">Next</button>
                 <button id="closeModal" class="btn">Close</button>
             </div>
         </div>
@@ -143,31 +141,31 @@
             {
                 subject: 'EGG DIR CONF.',
                 from: 'no-reply@sys.local',
-                body: 'Confirmation to deploy EGG DIR? input this code to confirm. \n 8175553297',
+                body: `Confirmation to deploy EGG DIR? input this code to confirm.\n8175553297`,
                 attachment: null
             },
             {
                 subject: 'CFRM:LOW POWER, MEETING REQUEST',
                 from: 'no-reply@DRCTR.fyi',
-                body: 'Accepted: \n " we need to have a conversation about this asap bucko, we didnt make you do this just to get a couple AA batteries and some nice spreadsheets" ',
+                body: `Accepted: " we need to have a conversation about this asap bucko, we didnt make you do this just to get a couple AA batteries and some nice spreadsheets"`,
                 attachment: null
             },
             {
                 subject: 'ENERGY WEEKLY REVIEW',
                 from: 'no-reply@xltl.local',
-                body: 'ENERGY PRODUCTION LEVEL METRICS, SEE ATTACHED:',
-                attachment: " /attachments/datatracker.xlsx "
+                body: `ENERGY PRODUCTION LEVEL METRICS, SEE ATTACHED:`,
+                attachment: '/attachments/datatracker.xlsx'
             },
             {
                 subject: 'What is egg dir?',
                 from: 'no-reply@sys.local',
-                body: '',
+                body: ``,
                 attachment: null
             },
             {
                 subject: 'Welcome to the southeast Aham power facility Gregory!',
                 from: 'no-reply@sys.local',
-                body: 'We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. \n Please overview this onboarding document to understand your duties and some of the wonderful amenities at this facility Greg:',
+                body: `We are so glad to welcome you to the team! We hope you become comfortable here and can contribute greatly to the cause. Please overview this onboarding document to understand your role.`,
                 attachment: null
             }
         ];
@@ -179,8 +177,6 @@
         const modalBody = document.getElementById('modalBody');
         const modalAttachment = document.getElementById('modalAttachment');
         const closeModal = document.getElementById('closeModal');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
 
         let currentIndex = 0;
 
@@ -196,7 +192,8 @@
                 item.setAttribute('data-index', idx);
 
                 const left = document.createElement('div');
-                left.innerHTML = `<div class="email-subject">${escapeHtml(e.subject)}</div><div class="email-meta">${escapeHtml(e.from)}</div>`;
+                // Use escapeHtml to avoid accidental HTML injection in subjects/from
+                left.innerHTML = `<div class="email-subject">${escapeHtml(String(e.subject || ''))}</div><div class="email-meta">${escapeHtml(String(e.from || ''))}</div>`;
 
                 const right = document.createElement('div');
                 right.className = 'email-meta';
@@ -205,6 +202,7 @@
                 item.appendChild(left);
                 item.appendChild(right);
 
+                // attach event listener that captures the current idx correctly
                 item.addEventListener('click', () => openEmail(idx));
 
                 emailList.appendChild(item);
@@ -213,17 +211,18 @@
 
         function openEmail(index) {
             const email = emails[index];
+            if (!email) return;
             currentIndex = index;
-            modalSubject.textContent = email.subject;
-            modalFrom.textContent = 'From: ' + email.from;
-            modalBody.textContent = email.body;
+            modalSubject.textContent = email.subject || '';
+            modalFrom.textContent = 'From: ' + (email.from || '');
+            modalBody.textContent = email.body || '';
 
             // Attachment handling
             modalAttachment.innerHTML = '';
             if (email.attachment) {
                 const a = document.createElement('a');
-                a.href = email.attachment;
-                a.download = email.attachment.split('/').pop();
+                a.href = String(email.attachment).trim();
+                a.download = a.href.split('/').pop();
                 a.className = 'btn';
                 a.textContent = 'Download Attachment';
                 modalAttachment.appendChild(a);
@@ -238,14 +237,6 @@
             modal.setAttribute('aria-hidden', 'true');
         }
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + emails.length) % emails.length;
-            openEmail(currentIndex);
-        });
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % emails.length;
-            openEmail(currentIndex);
-        });
         closeModal.addEventListener('click', closeEmail);
 
         // close by clicking outside
@@ -259,7 +250,7 @@
         });
 
         function escapeHtml(unsafe) {
-            return unsafe
+            return String(unsafe)
                  .replace(/&/g, "&amp;")
                  .replace(/</g, "&lt;")
                  .replace(/>/g, "&gt;")
