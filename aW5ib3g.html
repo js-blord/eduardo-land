@@ -5,10 +5,270 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="look.css">
     <title>Dashboard</title>
+    <style>
+        /* Inbox-specific styles that reuse the site's green-on-black aesthetic */
+        .inbox-container {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 1000px;
+        }
+        .email-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .email-item {
+            background-color: #000;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 10px rgba(0,255,0,0.2);
+            font-family: 'CP437', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Turn green on hover like the login buttons */
+        .email-item:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 255, 0, 0.9);
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        }
+        .email-subject {
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+        .email-meta {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        /* Modal / email view */
+        .email-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.95);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 22px;
+            z-index: 10000;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 30px rgba(0,255,0,0.6);
+        }
+        .email-modal.hidden { display: none; }
+        .email-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .email-modal .modal-body {
+            white-space: pre-wrap;
+            line-height: 1.4;
+            max-height: 50vh;
+            overflow: auto;
+            margin-bottom: 16px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        /* reuse button styles from look.css for download and close */
+        .btn {
+            padding: 10px 14px;
+            background-color: #000;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            font-family: 'CP437', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+        .close-x {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .no-emails { opacity: 0.8; }
+        @media(min-width:700px) {
+            .email-list { grid-template-columns: repeat(1, 1fr); }
+        }
+    </style>
 </head>
 <body>
     <h1>Dashboard</h1>
-    <p>come back later bruh this aint finished</p>
+    <div class="inbox-container">
+        <p class="prompts">Inbox (fake) — click any message to open it</p>
+        <div id="emailList" class="email-list">
+            <!-- Email items injected by script -->
+        </div>
+    </div>
+
+    <div id="emailModal" class="email-modal hidden" aria-hidden="true">
+        <div class="modal-header">
+            <div>
+                <div id="modalSubject" class="email-subject">Subject</div>
+                <div id="modalFrom" class="email-meta">From: someone@example.com</div>
+            </div>
+            <div class="modal-actions">
+                <button id="prevBtn" class="btn">Prev</button>
+                <button id="nextBtn" class="btn">Next</button>
+                <button id="closeModal" class="btn">Close</button>
+            </div>
+        </div>
+        <div id="modalBody" class="modal-body">Email body...</div>
+        <div id="modalAttachment" class="modal-attachment"></div>
+    </div>
+
     <a href="/logout">Logout</a>
+
+    <script>
+        // Sample emails - subject, body, optional attachment path (relative to repo root)
+        const emails = [
+            {
+                subject: 'Welcome to Eduardo Land',
+                from: 'noreply@eduardo.local',
+                body: 'Welcome! This is your fake inbox. Click messages to view them.\n\nEnjoy exploring the dashboard.',
+                attachment: null
+            },
+            {
+                subject: 'Encrypted Credentials (mock)',
+                from: 'sec@eduardo.local',
+                body: 'Attached are mock credentials for testing. Do not use in production.',
+                attachment: 'attachments/sample-attachment.txt'
+            },
+            {
+                subject: 'System Notice',
+                from: 'sys@eduardo.local',
+                body: 'A scheduled maintenance will happen tonight at 02:00. Please save your work.',
+                attachment: null
+            },
+            {
+                subject: 'Meeting Notes',
+                from: 'team@eduardo.local',
+                body: 'Here are the meeting notes from today. Action items:\n- Review design\n- Ship the demo',
+                attachment: null
+            },
+            {
+                subject: 'Download: sample payload',
+                from: 'data@eduardo.local',
+                body: 'You can download the sample payload using the button below.',
+                attachment: 'attachments/sample-attachment.txt'
+            }
+        ];
+
+        const emailList = document.getElementById('emailList');
+        const modal = document.getElementById('emailModal');
+        const modalSubject = document.getElementById('modalSubject');
+        const modalFrom = document.getElementById('modalFrom');
+        const modalBody = document.getElementById('modalBody');
+        const modalAttachment = document.getElementById('modalAttachment');
+        const closeModal = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+
+        function renderList() {
+            emailList.innerHTML = '';
+            if (emails.length === 0) {
+                emailList.innerHTML = '<div class="no-emails">No messages</div>';
+                return;
+            }
+            emails.forEach((e, idx) => {
+                const item = document.createElement('div');
+                item.className = 'email-item';
+                item.setAttribute('data-index', idx);
+
+                const left = document.createElement('div');
+                left.innerHTML = `<div class="email-subject">${escapeHtml(e.subject)}</div><div class="email-meta">${escapeHtml(e.from)}</div>`;
+
+                const right = document.createElement('div');
+                right.className = 'email-meta';
+                right.textContent = 'Click to open';
+
+                item.appendChild(left);
+                item.appendChild(right);
+
+                item.addEventListener('click', () => openEmail(idx));
+
+                emailList.appendChild(item);
+            });
+        }
+
+        function openEmail(index) {
+            const email = emails[index];
+            currentIndex = index;
+            modalSubject.textContent = email.subject;
+            modalFrom.textContent = 'From: ' + email.from;
+            modalBody.textContent = email.body;
+
+            // Attachment handling
+            modalAttachment.innerHTML = '';
+            if (email.attachment) {
+                const a = document.createElement('a');
+                a.href = email.attachment;
+                a.download = email.attachment.split('/').pop();
+                a.className = 'btn';
+                a.textContent = 'Download Attachment';
+                modalAttachment.appendChild(a);
+            }
+
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeEmail() {
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + emails.length) % emails.length;
+            openEmail(currentIndex);
+        });
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % emails.length;
+            openEmail(currentIndex);
+        });
+        closeModal.addEventListener('click', closeEmail);
+
+        // close by clicking outside
+        window.addEventListener('click', (ev) => {
+            if (!modal.classList.contains('hidden')) {
+                const rect = modal.getBoundingClientRect();
+                if (ev.clientX < rect.left || ev.clientX > rect.right || ev.clientY < rect.top || ev.clientY > rect.bottom) {
+                    closeEmail();
+                }
+            }
+        });
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/\"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // initialize
+        renderList();
+    </script>
 </body>
 </html>
